@@ -1,0 +1,40 @@
+.split-list{
+    padding: 5px 0px;
+    color: var(--asset-color);
+}
+
+ul.split-list{
+    list-style: none;
+}
+
+.split-cont{
+    display: flex;
+    min-height: 90px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--seconday-color);
+    &:not(:first-child){
+        margin-top: 5px;
+    }
+}
+
+.split-pic{
+    width: 80px;
+    text-align: center;
+    background-color: var(--primary-color);
+    >p{
+        font-weight: 600;
+        font-size: 70px;
+        line-height: 85px;
+        height: 90px;
+        padding: 0px;
+        margin: 0px;
+        color: var(--seconday-color);
+    }
+}
+
+.split-details{
+    width: calc(100% - 80px);
+    padding: 5px;
+    font-size: 18px;
+}
