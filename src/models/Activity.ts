@@ -6,5 +6,6 @@ export interface Activity{
     amount: number,
     time: Date,
     shareType: ShareType,
-    share: Share,
+    shares: Share[],
+    paidBy: string //Id of the member who paid the amount.
 }

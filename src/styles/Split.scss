@@ -1,0 +1,31 @@
+.split-header{
+    display: flex;
+    height: 70px;
+    background-color: var(--seconday-color);
+}
+
+.header-split-pic-cont{
+    width: 70px;
+    text-align: center;
+    >p{
+        font-weight: 600;
+        font-size: 70px;
+        line-height: 62px;
+        height: 70px;
+        padding: 0px;
+        margin: 0px;
+        color: var(--asset-color);
+    }
+}
+
+.header-split-name{
+    font-size: 18px;
+}
+
+.header-split-details-cont{
+    width: calc(100% - 70px);
+    color: var(--asset-color);
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
