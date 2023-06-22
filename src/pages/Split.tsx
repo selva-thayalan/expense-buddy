@@ -1,6 +1,7 @@
 import '../styles/Split.scss'
 import { Split as SplitModel } from "../models/Split";
 import { ShareType } from '../models/ShareType';
+import ActivityCard from '../components/ActivityCard';
 
 const Split = () =>{
     const split: SplitModel = {name:"Chennai Life", members: [], activities: [], overviews: []};
@@ -16,7 +17,7 @@ const Split = () =>{
                 </div>
             </div>
             <div className="split-activities-list-cont">
-
+                {split.activities.map(activity => <ActivityCard model={activity}/>)}
             </div>
         </div>
     )
