@@ -1,7 +1,7 @@
 import { Share } from "./Share";
 import { ShareType } from "./ShareType";
 
-export interface Activity{
+export interface Expense{
     title: string,
     amount: number,
     time: Date,

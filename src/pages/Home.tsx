@@ -7,8 +7,8 @@ const Home = () => {
     const navigate = useNavigate();
     let splits: Split[] = [];
     var selfMember: Member = {firstName:"Selva", emailId: "selva@gmail.com", id: "0"};
-    splits.push({name:"Chennai Life", members: [selfMember], activities: [], overviews: []});
-    splits.push({name:"Chennai Life", members: [selfMember], activities: [], overviews: []});
+    splits.push({name:"Chennai Life", members: [selfMember], expenses: [], overviews: []});
+    splits.push({name:"Chennai Life", members: [selfMember], expenses: [], overviews: []});
 
     const navToSplitPage = (splitId?: string) => {
         navigate(`/split/${splitId}`)
