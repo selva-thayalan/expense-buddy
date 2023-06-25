@@ -1,1 +1,6 @@
-export {};
+enum SplitType{
+    Individual,
+    Group
+}
+
+export { SplitType };
