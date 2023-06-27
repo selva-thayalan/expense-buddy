@@ -1,13 +1,14 @@
 import '../styles/Split.scss'
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { Split as SplitModel } from "../models/Split";
-import { useOutlet, useParams } from 'react-router-dom';
+import { useOutlet, useParams, useNavigate } from 'react-router-dom';
 import { RootState } from '../store/store';
 import { Expense } from '../models/Expense';
 import ExpenseCard from '../components/ExpenseCard';
 
 const Split = () =>{
     const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+    const navigate = useNavigate();
     const outlet = useOutlet();//To show expense list when the page is in index.
     var { splitId } = useParams();
     var split: SplitModel|undefined = useTypedSelector(state => state.splits.find(sp => sp.id === splitId));
@@ -25,6 +26,7 @@ const Split = () =>{
                 </div>
                 {outlet || <div className="split-expense-list-cont">
                     {expenses.map(expense => <ExpenseCard model={expense}/>)}
+                    <button className="add-new-expense-btn" onClick={() => navigate("./add")}>Add</button>
                 </div>}
             </div>}
         </>

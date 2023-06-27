@@ -10,6 +10,8 @@ const expenseInitialState: Expense[] = [
 
 const expenseReducer = (state = expenseInitialState, action: ActionModel): Expense[] => {
     switch(action.type){
+        case "AddNew":
+            return [...state, action.payload];
         default:
             return state;
     }

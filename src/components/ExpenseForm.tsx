@@ -1,14 +1,16 @@
 import { ChangeEvent, useState } from 'react';
 import '../styles/components/ExpenseForm.scss';
 import Select from "react-select";
+import { ShareType } from '../models/ShareType';
+import { ExpenseFormModel } from '../models/Common';
 
 interface ExpenseFormProps{
     isEditMode?: boolean,
-    onSuccess?: () => void,
+    onComplete?: (expense: ExpenseFormModel) => void,
     onCancel?: () => void
 }
 
-const ExpenseForm = ({onCancel, onSuccess, isEditMode = false}:ExpenseFormProps) => {
+const ExpenseForm = ({onCancel, onComplete: onComplete, isEditMode = false}:ExpenseFormProps) => {
     const [amount, setAmount] = useState("");
     const [title, setTitle] = useState("");
 
@@ -24,6 +26,11 @@ const ExpenseForm = ({onCancel, onSuccess, isEditMode = false}:ExpenseFormProps)
         onCancel?.();
     }
 
+    function onCompleteAction(): void{
+        var expense: ExpenseFormModel = {title, amount: +amount, shareType: ShareType.Equal, shares: [], paidBy: "0"};
+        onComplete?.(expense);
+    }
+
     return(
         <div className="expense-form-cont">
             <input type="text" value={title} onChange={onTitleChange} placeholder="Title" className="expense-title expense-input-field-style" />
@@ -32,7 +39,7 @@ const ExpenseForm = ({onCancel, onSuccess, isEditMode = false}:ExpenseFormProps)
                 Paid by <Select/> and split Equally
             </div>
             <div className="expense-actions-cont">
-                <button className="complete-action-btn">{isEditMode? "Save" : "Add"}</button>
+                <button className="complete-action-btn" onClick={onCompleteAction}>{isEditMode? "Save" : "Add"}</button>
                 <button className="cancel-action-btn" onClick={onCancelAction}>Cancel</button>
             </div>
         </div>
