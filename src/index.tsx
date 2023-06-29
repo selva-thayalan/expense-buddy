@@ -5,7 +5,8 @@ import './index.css';
 import './styles/Common.scss';
 import Home from './pages/Home';
 import Split from './pages/Split';
-import Expense from './pages/Expense';
+import AddExpense from './pages/expense/AddExpense';
+import EditExpense from './pages/expense/EditExpense';
 import { Provider } from 'react-redux';
 import store from './store/store';
 
@@ -18,7 +19,8 @@ root.render(
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/split/:splitId' element={<Split/>}>
-          <Route path='add' element={<Expense/>} />
+          <Route path='add' element={<AddExpense/>} />
+          <Route path='edit/:expenseId' element={<EditExpense/>} />
         </Route>
       </Routes>
     </BrowserRouter>

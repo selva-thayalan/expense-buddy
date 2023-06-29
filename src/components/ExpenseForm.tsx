@@ -3,16 +3,18 @@ import '../styles/components/ExpenseForm.scss';
 import Select from "react-select";
 import { ShareType } from '../models/ShareType';
 import { ExpenseFormModel } from '../models/Common';
+import { Expense } from '../models/Expense';
 
 interface ExpenseFormProps{
     isEditMode?: boolean,
+    expenseModel?: Expense,
     onComplete?: (expense: ExpenseFormModel) => void,
     onCancel?: () => void
 }
 
-const ExpenseForm = ({onCancel, onComplete: onComplete, isEditMode = false}:ExpenseFormProps) => {
-    const [amount, setAmount] = useState("");
-    const [title, setTitle] = useState("");
+const ExpenseForm = ({onCancel, onComplete: onComplete, expenseModel, isEditMode = false}:ExpenseFormProps) => {
+    const [amount, setAmount] = useState(expenseModel?.amount || "");
+    const [title, setTitle] = useState(expenseModel?.title || "");
 
     function onAmountChange(e: any){
         setAmount(e.target.value.replace(/[^\d.]/g, ""));
