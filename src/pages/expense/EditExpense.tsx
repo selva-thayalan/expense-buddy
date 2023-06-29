@@ -11,8 +11,8 @@ const EditExpense = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    var { expenseId } = useParams();
-    const expense = useTypedSelector(state => state.expenses.find(exp => exp.id === expenseId))
+    var { expenseId, splitId } = useParams();
+    const expense: Expense|undefined = useTypedSelector(state => state.expenses.find(exp => exp.id === expenseId));
     
     function onCompleteEdit(modifiedExpense: ExpenseFormModel){
         if(expense){
@@ -24,6 +24,7 @@ const EditExpense = () => {
 
     return <ExpenseForm
             isEditMode={true}
+            splitId={splitId}
             expenseModel={expense}
             onComplete={onCompleteEdit}
             onCancel={() => navigate("../")}/>

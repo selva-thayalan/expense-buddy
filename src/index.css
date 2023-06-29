@@ -22,3 +22,8 @@ code {
   padding: 0px;
   box-sizing: border-box;
 }
+
+/* To override the react select component style to remove the margin in the list component. */
+.react-select__menu{
+  margin: 0px !important;
+}

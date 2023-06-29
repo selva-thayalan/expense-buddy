@@ -17,6 +17,7 @@ const AddExpense = () => {
     }
 
     return <ExpenseForm 
+                splitId = {splitId}
                 onComplete={onCompleteAdd}
                 onCancel={() => navigate("../")}/>
 }

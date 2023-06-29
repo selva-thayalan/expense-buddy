@@ -2,7 +2,11 @@ import { Member } from "../models/Member";
 
 const getMemeberNameById = (members: Member[], id: string): string => {
     var member = members.find(mem => mem.id === id);
-    return member ? `${member.firstName} ${member.lastName}` : "";
+    return member ? getMemberName(member) : "";
 }
 
-export { getMemeberNameById };
+const getMemberName = (member: Member): string => {
+    return `${member.firstName} ${member.lastName}`;
+}
+
+export { getMemeberNameById, getMemberName };
