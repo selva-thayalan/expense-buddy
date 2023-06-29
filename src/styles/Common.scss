@@ -29,3 +29,20 @@
 .t_align_c{
     text-align: center;
 }
+
+.v_align_flex{
+    display: flex;
+    justify-content: center;
+}
+
+.flex_d_column{
+    flex-direction: column;
+}
+
+.flex_d_row{
+    flex-direction: row;
+}
+
+.flex_align_center{
+    align-items: center;
+}

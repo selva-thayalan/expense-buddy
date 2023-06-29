@@ -5,14 +5,18 @@ import { useOutlet, useParams, useNavigate } from 'react-router-dom';
 import { RootState } from '../store/store';
 import { Expense } from '../models/Expense';
 import ExpenseCard from '../components/ExpenseCard';
+import { Member } from '../models/Member';
 
 const Split = () =>{
     const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
     const navigate = useNavigate();
     const outlet = useOutlet();//To show expense list when the page is in index.
     var { splitId } = useParams();
+
     var split: SplitModel|undefined = useTypedSelector(state => state.splits.find(sp => sp.id === splitId));
     var expenses: Expense[] = useTypedSelector(state => state.expenses);
+    var useAccount: Member = useTypedSelector(state => state.userAccount);
+
     return(
         <>
             {split && <div className="split-page main-content-area">
@@ -25,7 +29,7 @@ const Split = () =>{
                     </div>
                 </div>
                 {outlet || <div className="split-expense-list-cont">
-                    {expenses.map(expense => <ExpenseCard model={expense}/>)}
+                    {expenses.map(expense => <ExpenseCard model={expense} members={split?.members} userAccount={useAccount}/>)}
                     <button className="add-new-expense-btn" onClick={() => navigate("./add")}>Add</button>
                 </div>}
             </div>}

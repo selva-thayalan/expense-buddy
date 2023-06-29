@@ -2,10 +2,43 @@
     display: flex;
     height: 50px;
     width: 100%;
+    justify-content: space-between;
     background-color: #d5d5d5;
+}
+
+.expense-detail{
+    font-size: small;
+    white-space: nowrap;
+    padding-left: 10px;
+    .expense-title{
+        font-size: large;
+    }
 }
 
 .expense-card-lhs{
     height: 100%;
     width: 50px;
+}
+
+.expense-card-cntr{
+    flex: 1;
+    padding-left: 10px;
+}
+.expense-card-rhs{
+    padding-right: 5px;
+}
+
+.share-detail{
+    font-size: small;
+    text-align: end;
+    p.share-amount{
+        font-size: medium;
+        font-weight: 500;
+    }
+    >.share-lent{
+        color: green;
+    }
+    >.share-borrowed{
+        color: red;
+    }
 }
