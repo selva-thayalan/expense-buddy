@@ -16,7 +16,7 @@ const Home = () => {
     return(
         <div className="home-page main-content-area">
             <div className="total-split-overview">{}</div>
-            <ul className="split-list">
+            <ul className="split-list no-list-style">
                 {splitList.map(split => 
                     <li className="split-cont" onClick={() => navToSplitPage(split.id)}>
                         <div className="split-pic">
