@@ -27,3 +27,7 @@ code {
 .react-select__menu{
   margin: 0px !important;
 }
+
+button, input[type="checkbox"]{
+  cursor: pointer;
+}
