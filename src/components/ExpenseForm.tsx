@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '../styles/components/ExpenseForm.scss';
 import Select, { SingleValue } from "react-select";
 import { ShareType } from '../models/ShareType';
@@ -9,6 +9,8 @@ import { RootState } from '../store/store';
 import { Split } from '../models/Split';
 import { getMemberName } from '../utils/Common';
 import { Member } from '../models/Member';
+import EqualShare from './shares/EqualShare';
+import { Share } from '../models/Share';
 
 interface ExpenseFormProps{
     splitId?: string,
@@ -19,15 +21,19 @@ interface ExpenseFormProps{
 }
 
 interface SelectOption{
-    value: string,
+    value: any,
     label: string
 }
+
+const ShareTypeOptions = [{label: "Equally", value:ShareType.Equal}, {label: "Unequally", value:ShareType.Unequal}, {label: "Percentage", value:ShareType.Percentage}];
 
 const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = false}:ExpenseFormProps) => {
     const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
     const [amount, setAmount] = useState(0);
     const [title, setTitle] = useState("");
-    const [paidBy, setPaidBy] = useState({value:"", label:""});
+    const [paidBy, setPaidBy] = useState<SelectOption>({value:"", label:""});
+    const [shareType, setShareType] = useState<SelectOption>();
+    const shares = useRef<Share[]>([]);
 
     const split: Split|undefined = useTypedSelector(state => state.splits.find(s => s.id === splitId));
     const useAccount: Member = useTypedSelector(state => state.userAccount);
@@ -44,6 +50,8 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
             setAmount(expenseModel.amount);
             setTitle(expenseModel.title);
             setPaidBy(getMemberOptions().find(mem => mem.value === expenseModel.paidBy) || {value:"", label:""});
+            setShareType(ShareTypeOptions.find(s => s.value === expenseModel.shareType));
+            shares.current = expenseModel.shares;
         }
     }, [])
 
@@ -60,12 +68,20 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
     }
 
     function onCompleteAction(): void{
-        var expense: ExpenseFormModel = {title, amount: +amount, shareType: ShareType.Equal, shares: [], paidBy: paidBy.value};
+        var expense: ExpenseFormModel = {title, amount: +amount, shareType: shareType?.value, shares: shares.current, paidBy: paidBy.value};
         onComplete?.(expense);
     }
 
     function onChangePaidBy(option: SingleValue<any>): void{
         setPaidBy(option);
+    }
+
+    function onChangeShareType(option: SingleValue<any>): void{
+        setShareType(option);
+    }
+
+    function onShareComplete(shareList: Share[]){
+        shares.current = shareList;
     }
 
     return(
@@ -74,9 +90,13 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
             <input type="text" value={title} onChange={onTitleChange} placeholder="Title" className="expense-title expense-input-field-style" />
             <input type="text" value={amount} onChange={onAmountChange} placeholder="Amount" className="expense-amount expense-input-field-style" />
             <div className="expense-split-detail-cont">
-                Paid by <Select classNamePrefix="react-select" value={paidBy} onChange={onChangePaidBy} options={getMemberOptions()}/> and split Equally
+                Paid by <Select classNamePrefix="react-select" value={paidBy} onChange={onChangePaidBy} options={getMemberOptions()}/> and split 
+                <Select classNamePrefix="react-select" value={shareType} onChange={onChangeShareType} options={ShareTypeOptions}/>
+                <div className="share-wrap">
+                    <EqualShare isEditMode={isEditMode} shares={expenseModel?.shares} members={split?.members} amount={amount} onComplete={onShareComplete}/>
+                </div>
             </div>
-            <div className="expense-actions-cont">
+            <div className="expense-actions-cont t_align_c">
                 <button className="complete-action-btn" onClick={onCompleteAction}>{isEditMode? "Save" : "Add"}</button>
                 <button className="cancel-action-btn" onClick={onCancelAction}>Cancel</button>
             </div>
