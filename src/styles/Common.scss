@@ -54,3 +54,27 @@ ul.no-list-style{
 .clickable{
     cursor: pointer;
 }
+
+//Color related classes
+.positive-color{
+    color: green;
+}
+
+.negative-color{
+    color: red;
+}
+
+.informative-color{
+    color: orange;
+}
+
+//Component style related classes
+input.std-style{
+    border: 0;
+    border-bottom: 1px solid gray;
+    &:focus{
+        outline: 0;
+        outline-color: transparent;
+        border-bottom: 1px solid black;
+    }
+}

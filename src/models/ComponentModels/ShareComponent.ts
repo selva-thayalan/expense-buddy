@@ -16,4 +16,10 @@ interface EqualShareView{
     isSelected: Boolean
 }
 
-export { type ShareComponentProps as default, type EqualShareView }
+interface UnequalShareView{
+    name: string,
+    id: string,
+    amount: number
+}
+
+export { type ShareComponentProps as default, type EqualShareView, type UnequalShareView }
