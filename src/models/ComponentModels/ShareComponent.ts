@@ -1,5 +1,5 @@
-import { Member } from "./Member";
-import { Share } from "./Share";
+import { Member } from "../Member";
+import { Share } from "../Share";
 
 interface ShareComponentProps{
     isEditMode?: Boolean,

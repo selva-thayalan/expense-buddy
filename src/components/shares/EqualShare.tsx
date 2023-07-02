@@ -1,6 +1,6 @@
 import "../../styles/components/Shares.scss";
 import { useEffect, useState } from "react";
-import ShareComponentProps, { EqualShareView } from "../../models/ShareComponentModels";
+import ShareComponentProps, { EqualShareView } from "../../models/ComponentModels/ShareComponent";
 import { getMemberName } from "../../utils/Common";
 import { Share } from "../../models/Share";
 
