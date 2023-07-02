@@ -9,3 +9,17 @@
         border-bottom: 1px solid black;
     }
 }
+
+.expense-form-cont{
+    position: relative;
+    height: calc(100% - 70px);
+    width: 100%;
+}
+
+.share-type-selected{
+    border: 1px solid;
+    width: fit-content;
+    padding: 2px;
+    background: gainsboro;
+    border-radius: 5px;
+}

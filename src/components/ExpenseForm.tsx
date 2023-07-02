@@ -11,6 +11,8 @@ import { getMemberName } from '../utils/Common';
 import { Member } from '../models/Member';
 import EqualShare from './shares/EqualShare';
 import { Share } from '../models/Share';
+import StateSwitch from './common/StateSwitch';
+import { StateStyle } from '../models/ComponentModels/StateSwitchComponent';
 
 interface ExpenseFormProps{
     splitId?: string,
@@ -25,6 +27,12 @@ interface SelectOption{
     label: string
 }
 
+const ShareTypeReadableName = {
+    [ShareType.Equal] : "Equally",
+    [ShareType.Unequal] : "Unequally",
+    [ShareType.Percentage] : "Percentage"
+}
+
 const ShareTypeOptions = [{label: "Equally", value:ShareType.Equal}, {label: "Unequally", value:ShareType.Unequal}, {label: "Percentage", value:ShareType.Percentage}];
 
 const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = false}:ExpenseFormProps) => {
@@ -32,7 +40,9 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
     const [amount, setAmount] = useState(0);
     const [title, setTitle] = useState("");
     const [paidBy, setPaidBy] = useState<SelectOption>({value:"", label:""});
-    const [shareType, setShareType] = useState<SelectOption>();
+    const [shareType, setShareType] = useState<ShareType>();
+    const [showShareEditor, setShowShareEditor] = useState(false);
+    const [isExpenseValid, setIsExpenseValid] = useState(false);
     const shares = useRef<Share[]>([]);
 
     const split: Split|undefined = useTypedSelector(state => state.splits.find(s => s.id === splitId));
@@ -50,10 +60,20 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
             setAmount(expenseModel.amount);
             setTitle(expenseModel.title);
             setPaidBy(getMemberOptions().find(mem => mem.value === expenseModel.paidBy) || {value:"", label:""});
-            setShareType(ShareTypeOptions.find(s => s.value === expenseModel.shareType));
+            setShareType(expenseModel.shareType);
             shares.current = expenseModel.shares;
         }
     }, [])
+
+    useEffect(() => {
+        checkIsExpenseValid();
+    }, [title, amount, paidBy.value, shareType, shares.current.length]);
+
+    function getShareTypeName(type: ShareType|undefined): string{
+        if(type !== undefined && ShareTypeReadableName[type])
+            return ShareTypeReadableName[type];
+        return "--";
+    }
 
     function onAmountChange(e: any){
         setAmount(e.target.value.replace(/[^\d.]/g, ""));
@@ -68,7 +88,7 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
     }
 
     function onCompleteAction(): void{
-        var expense: ExpenseFormModel = {title, amount: +amount, shareType: shareType?.value, shares: shares.current, paidBy: paidBy.value};
+        var expense: ExpenseFormModel = {title, amount: +amount, shareType: shareType || ShareType.Equal, shares: shares.current, paidBy: paidBy.value};
         onComplete?.(expense);
     }
 
@@ -76,12 +96,26 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
         setPaidBy(option);
     }
 
-    function onChangeShareType(option: SingleValue<any>): void{
+    function onClickShareType(): void{
+        setShowShareEditor(true);
+    }
+
+    function onChangeShareType(option: ShareType): void{
         setShareType(option);
     }
 
     function onShareComplete(shareList: Share[]){
         shares.current = shareList;
+        setShowShareEditor(false);
+    }
+
+    function checkIsExpenseValid(){
+        let isValid = ((title !== "") && (amount > 0) && (paidBy.value !== "") && shareType !== undefined && (shares.current.length > 0))? true : false;
+        setIsExpenseValid(isValid);
+    }
+
+    function onCancelShareEditor(){
+        setShowShareEditor(false);
     }
 
     return(
@@ -91,13 +125,14 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
             <input type="text" value={amount} onChange={onAmountChange} placeholder="Amount" className="expense-amount expense-input-field-style" />
             <div className="expense-split-detail-cont">
                 Paid by <Select classNamePrefix="react-select" value={paidBy} onChange={onChangePaidBy} options={getMemberOptions()}/> and split 
-                <Select classNamePrefix="react-select" value={shareType} onChange={onChangeShareType} options={ShareTypeOptions}/>
-                <div className="share-wrap">
-                    <EqualShare isEditMode={isEditMode} shares={expenseModel?.shares} members={split?.members} amount={amount} onComplete={onShareComplete}/>
-                </div>
+                <div className="share-type-selected clickable" onClick={onClickShareType}>{getShareTypeName(shareType)}</div>
             </div>
+            {showShareEditor && <div className="share-wrap">
+                <StateSwitch style={StateStyle.tab} value={shareType} onChange={onChangeShareType} options={ShareTypeOptions}/>
+                <EqualShare isEditMode={isEditMode} shares={expenseModel?.shares} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>
+            </div>}
             <div className="expense-actions-cont t_align_c">
-                <button className="complete-action-btn" onClick={onCompleteAction}>{isEditMode? "Save" : "Add"}</button>
+                <button className="complete-action-btn" disabled={!isExpenseValid} onClick={onCompleteAction}>{isEditMode? "Save" : "Add"}</button>
                 <button className="cancel-action-btn" onClick={onCancelAction}>Cancel</button>
             </div>
             </>}
