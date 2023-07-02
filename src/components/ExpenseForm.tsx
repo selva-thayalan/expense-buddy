@@ -122,8 +122,8 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
     return(
         <div className="expense-form-cont">
             {split && <>
-            <input type="text" value={title} onChange={onTitleChange} placeholder="Title" className="expense-title expense-input-field-style" />
-            <NumberInput value={amount} onChange={onAmountChange} placeHolder="Amount" className="expense-amount expense-input-field-style" />
+            <input type="text" value={title} onChange={onTitleChange} placeholder="Title" className="expense-title expense-input-field-size std-style" />
+            <NumberInput value={amount} onChange={onAmountChange} placeHolder="Amount" className="expense-amount expense-input-field-size std-style" />
             <div className="expense-split-detail-cont">
                 Paid by <Select classNamePrefix="react-select" value={paidBy} onChange={onChangePaidBy} options={getMemberOptions()}/> and split 
                 <div className="share-type-selected clickable" onClick={onClickShareType}>{getShareTypeName(shareType)}</div>
