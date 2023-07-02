@@ -13,6 +13,7 @@ import EqualShare from './shares/EqualShare';
 import { Share } from '../models/Share';
 import StateSwitch from './common/StateSwitch';
 import { StateStyle } from '../models/ComponentModels/StateSwitchComponent';
+import NumberInput from './common/NumberInput';
 
 interface ExpenseFormProps{
     splitId?: string,
@@ -75,8 +76,8 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
         return "--";
     }
 
-    function onAmountChange(e: any){
-        setAmount(e.target.value.replace(/[^\d.]/g, ""));
+    function onAmountChange(value: number){
+        setAmount(value);
     }
 
     function onTitleChange(e: any){
@@ -122,7 +123,7 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
         <div className="expense-form-cont">
             {split && <>
             <input type="text" value={title} onChange={onTitleChange} placeholder="Title" className="expense-title expense-input-field-style" />
-            <input type="text" value={amount} onChange={onAmountChange} placeholder="Amount" className="expense-amount expense-input-field-style" />
+            <NumberInput value={amount} onChange={onAmountChange} placeHolder="Amount" className="expense-amount expense-input-field-style" />
             <div className="expense-split-detail-cont">
                 Paid by <Select classNamePrefix="react-select" value={paidBy} onChange={onChangePaidBy} options={getMemberOptions()}/> and split 
                 <div className="share-type-selected clickable" onClick={onClickShareType}>{getShareTypeName(shareType)}</div>
