@@ -1,0 +1,16 @@
+.state-switch-cont{
+    display: flex;
+    justify-content: space-around;
+}
+
+.state-item-cont{
+    flex: 1;
+    text-align: center;
+    height: 35px;
+    border: 1px solid grey;
+    background-color: gainsboro;
+    &.active-state{
+        border-bottom: 0px;
+        background-color: inherit;
+    }
+}
