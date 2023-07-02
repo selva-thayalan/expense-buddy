@@ -6,7 +6,8 @@ interface ShareComponentProps{
     shares?: Share[],
     members: Member[],
     amount: number,
-    onComplete : (shares: Share[]) => void
+    onComplete : (shares: Share[]) => void,
+    onCancel: () => void
 }
 
 interface EqualShareView{

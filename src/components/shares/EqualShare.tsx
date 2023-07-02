@@ -4,7 +4,7 @@ import ShareComponentProps, { EqualShareView } from "../../models/ComponentModel
 import { getMemberName } from "../../utils/Common";
 import { Share } from "../../models/Share";
 
-const EqualShare = ({isEditMode = false, amount, members, shares, onComplete}:ShareComponentProps) => {
+const EqualShare = ({isEditMode = false, amount, members, shares, onComplete, onCancel}:ShareComponentProps) => {
     const [shareList, setShareList] = useState<EqualShareView[]>([]);
     const [shareCount, setShareCount] = useState(0);
     const [allSelectionState, setAllSelection] = useState(false);
@@ -74,12 +74,13 @@ const EqualShare = ({isEditMode = false, amount, members, shares, onComplete}:Sh
                     <b>{shareCount > 0 ? (amount/shareCount).toFixed(2) : 0}</b>/person
                     <p className="f_size_s">({shareCount} people)</p>
                 </div>
-                <div className="share-action-cont">
-                    <button onClick={onCompleteAction}>Done</button>
-                </div>
                 <div className="member-toggle-all-option">
                     <input type="checkbox" checked={allSelectionState} onChange={() => toggleAllMembers(!allSelectionState)}/> All
                 </div>
+            </div>
+            <div className="share-action-cont">
+                <button onClick={onCompleteAction}>Done</button>
+                <button onClick={onCancel}>Cancel</button>
             </div>
         </div>
     )
