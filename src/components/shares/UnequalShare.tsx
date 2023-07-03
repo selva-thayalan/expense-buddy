@@ -12,11 +12,13 @@ const UnequalShare = ({isEditMode = false, amount, members, shares, onComplete, 
     useEffect(() => {
         var shareViewList: UnequalShareView[] = [];
         if(isEditMode && shares){
+            let totalAmount = 0;
             shareViewList = members.map(mem => {
                 let share = shares.find(s => s.memberId === mem.id);
+                totalAmount += (share?.amount ?? 0);
                 return { id: mem.id, name: getMemberName(mem), amount: share?.amount || 0 };
             });
-            setSplittedAmount(amount);
+            setSplittedAmount(totalAmount);
         }
         else{
             shareViewList = members.map(mem => ({ id: mem.id, name: getMemberName(mem), amount: 0 }));

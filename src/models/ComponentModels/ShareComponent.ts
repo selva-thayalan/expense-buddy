@@ -10,16 +10,20 @@ interface ShareComponentProps{
     onCancel: () => void
 }
 
-interface EqualShareView{
+interface ShareView{
     name: string,
     id: string,
+}
+
+interface EqualShareView extends ShareView{
     isSelected: Boolean
 }
 
-interface UnequalShareView{
-    name: string,
-    id: string,
+interface UnequalShareView extends ShareView{
     amount: number
 }
+interface PercentageShareView extends ShareView{
+    percentage: number
+}
 
-export { type ShareComponentProps as default, type EqualShareView, type UnequalShareView }
+export { type ShareComponentProps as default, type EqualShareView, type UnequalShareView, type PercentageShareView }
