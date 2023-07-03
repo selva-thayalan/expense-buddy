@@ -13,7 +13,9 @@ import EqualShare from './shares/EqualShare';
 import { Share } from '../models/Share';
 import StateSwitch from './common/StateSwitch';
 import { StateStyle } from '../models/ComponentModels/StateSwitchComponent';
+import UnequalShare from './shares/UnequalShare';
 import NumberInput from './common/NumberInput';
+import PercentageShare from './shares/PercentageShare';
 
 interface ExpenseFormProps{
     splitId?: string,
@@ -130,7 +132,9 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
             </div>
             {showShareEditor && <div className="share-wrap">
                 <StateSwitch style={StateStyle.tab} value={shareType} onChange={onChangeShareType} options={ShareTypeOptions}/>
-                <EqualShare isEditMode={isEditMode} shares={expenseModel?.shares} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>
+                {shareType === ShareType.Equal ? <EqualShare isEditMode={isEditMode} shares={expenseModel?.shares} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>
+                    :shareType === ShareType.Unequal ? <UnequalShare isEditMode={isEditMode} shares={expenseModel?.shares} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>
+                        :<PercentageShare isEditMode={isEditMode} shares={expenseModel?.shares} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>}
             </div>}
             <div className="expense-actions-cont t_align_c">
                 <button className="complete-action-btn" disabled={!isExpenseValid} onClick={onCompleteAction}>{isEditMode? "Save" : "Add"}</button>
