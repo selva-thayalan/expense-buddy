@@ -22,5 +22,8 @@ interface EqualShareView extends ShareView{
 interface UnequalShareView extends ShareView{
     amount: number
 }
+interface PercentageShareView extends ShareView{
+    percentage: number
+}
 
-export { type ShareComponentProps as default, type EqualShareView, type UnequalShareView }
+export { type ShareComponentProps as default, type EqualShareView, type UnequalShareView, type PercentageShareView }
