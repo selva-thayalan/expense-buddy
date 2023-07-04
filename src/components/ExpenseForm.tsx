@@ -43,7 +43,7 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
     const [amount, setAmount] = useState(0);
     const [title, setTitle] = useState("");
     const [paidBy, setPaidBy] = useState<SelectOption>({value:"", label:""});
-    const [shareType, setShareType] = useState<ShareType>();
+    const [shareType, setShareType] = useState<ShareType>(ShareType.Equal);
     const [showShareEditor, setShowShareEditor] = useState(false);
     const [isExpenseValid, setIsExpenseValid] = useState(false);
     const shares = useRef<Share[]>([]);
