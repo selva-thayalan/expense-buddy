@@ -8,6 +8,7 @@ const EqualShare = ({isEditMode = false, amount, members, shares, onComplete, on
     const [shareList, setShareList] = useState<EqualShareView[]>([]);
     const [shareCount, setShareCount] = useState(0);
     const [allSelectionState, setAllSelection] = useState(false);
+    const [isShareInvalid, setIsShareInvalid] = useState(true);
 
     useEffect(() => {
         var shareViewList: EqualShareView[] = [];
@@ -31,6 +32,10 @@ const EqualShare = ({isEditMode = false, amount, members, shares, onComplete, on
         }
         setShareList(shareViewList);
     },[]);
+    
+    useEffect(() => {
+        setIsShareInvalid(shareCount === 0);
+    },[shareCount]);
 
     function onMemberSelectionToggle(memberIndex: number, state: boolean){
         shareList[memberIndex].isSelected = state;
@@ -79,7 +84,7 @@ const EqualShare = ({isEditMode = false, amount, members, shares, onComplete, on
                 </div>
             </div>
             <div className="share-action-cont">
-                <button onClick={onCompleteAction}>Done</button>
+                <button onClick={onCompleteAction} disabled={isShareInvalid}>Done</button>
                 <button onClick={onCancel}>Cancel</button>
             </div>
         </div>
