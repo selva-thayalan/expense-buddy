@@ -28,10 +28,14 @@ const Split = () =>{
                         <div className="header-split-name">{split.name}</div>
                     </div>
                 </div>
-                {outlet || <div className="split-expense-list-cont">
-                    {expenses.map(expense => <ExpenseCard model={expense} members={split?.members} userAccount={useAccount}/>)}
-                    <button className="add-new-expense-btn" onClick={() => navigate("./add")}>Add</button>
+                {outlet || <div className="split-expense-list-wrap">
+                    <div className="split-expense-list-cont">
+                        {expenses.map(expense => <ExpenseCard model={expense} members={split?.members} userAccount={useAccount}/>)}
+                    </div>
                 </div>}
+                <div className="split-foot-cont">
+                    <button className="add-new-expense-btn" onClick={() => navigate("./add")}>Add Expense<i className="fa-solid fa-receipt"></i></button>
+                </div>
             </div>}
         </>
     )

@@ -5,13 +5,14 @@ import { getMemberName } from "../../utils/Common";
 import { Share } from "../../models/Share";
 import NumberInput from "../common/NumberInput";
 
-const PercentageShare = ({isEditMode = false, amount, members, shares, onComplete, onCancel}:ShareComponentProps) => {
+const PercentageShare = ({amount, members, shares, onComplete, onCancel}:ShareComponentProps) => {
     const [shareList, setShareList] = useState<PercentageShareView[]>([]);
     const [splittedPercentage, setSplittedPercentage] = useState(0);
+    const [isShareInvalid, setIsShareInvalid] = useState(true);
 
     useEffect(() => {
         var shareViewList: PercentageShareView[] = [];
-        if(isEditMode && shares){
+        if(shares){
             let totalPercentage = 0;
             shareViewList = members.map(mem => {
                 let share = shares.find(s => s.memberId === mem.id);
@@ -25,6 +26,10 @@ const PercentageShare = ({isEditMode = false, amount, members, shares, onComplet
         }
         setShareList(shareViewList);
     },[]);
+
+    useEffect(() => {
+        setIsShareInvalid(splittedPercentage !== 100);
+    },[splittedPercentage]);
 
     function onShareAmountChange(memberIndex: number, percentage: number){
         shareList[memberIndex].percentage = percentage;
@@ -77,7 +82,7 @@ const PercentageShare = ({isEditMode = false, amount, members, shares, onComplet
                 </div>
             </div>
             <div className="share-action-cont">
-                <button onClick={onCompleteAction}>Done</button>
+                <button onClick={onCompleteAction} disabled={isShareInvalid}>Done</button>
                 <button onClick={onCancel}>Cancel</button>
             </div>
         </div>

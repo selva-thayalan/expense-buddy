@@ -43,7 +43,7 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
     const [amount, setAmount] = useState(0);
     const [title, setTitle] = useState("");
     const [paidBy, setPaidBy] = useState<SelectOption>({value:"", label:""});
-    const [shareType, setShareType] = useState<ShareType>();
+    const [shareType, setShareType] = useState<ShareType>(ShareType.Equal);
     const [showShareEditor, setShowShareEditor] = useState(false);
     const [isExpenseValid, setIsExpenseValid] = useState(false);
     const shares = useRef<Share[]>([]);
@@ -132,9 +132,9 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
             </div>
             {showShareEditor && <div className="share-wrap">
                 <StateSwitch style={StateStyle.tab} value={shareType} onChange={onChangeShareType} options={ShareTypeOptions}/>
-                {shareType === ShareType.Equal ? <EqualShare isEditMode={isEditMode} shares={expenseModel?.shares} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>
-                    :shareType === ShareType.Unequal ? <UnequalShare isEditMode={isEditMode} shares={expenseModel?.shares} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>
-                        :<PercentageShare isEditMode={isEditMode} shares={expenseModel?.shares} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>}
+                {shareType === ShareType.Equal ? <EqualShare shares={shares.current} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>
+                    :shareType === ShareType.Unequal ? <UnequalShare shares={shares.current} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>
+                        :<PercentageShare shares={shares.current} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>}
             </div>}
             <div className="expense-actions-cont t_align_c">
                 <button className="complete-action-btn" disabled={!isExpenseValid} onClick={onCompleteAction}>{isEditMode? "Save" : "Add"}</button>
