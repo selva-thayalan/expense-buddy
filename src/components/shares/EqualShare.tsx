@@ -4,7 +4,7 @@ import ShareComponentProps, { EqualShareView } from "../../models/ComponentModel
 import { getMemberName } from "../../utils/Common";
 import { Share } from "../../models/Share";
 
-const EqualShare = ({isEditMode = false, amount, members, shares, onComplete, onCancel}:ShareComponentProps) => {
+const EqualShare = ({amount, members, shares, onComplete, onCancel}:ShareComponentProps) => {
     const [shareList, setShareList] = useState<EqualShareView[]>([]);
     const [shareCount, setShareCount] = useState(0);
     const [allSelectionState, setAllSelection] = useState(false);
@@ -12,7 +12,7 @@ const EqualShare = ({isEditMode = false, amount, members, shares, onComplete, on
 
     useEffect(() => {
         var shareViewList: EqualShareView[] = [];
-        if(isEditMode && shares){
+        if(shares){
             let tempShareCount = 0;
             shareViewList = members.map(mem => {
                 let share = shares.find(s => s.memberId === mem.id);

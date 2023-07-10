@@ -5,14 +5,14 @@ import { getMemberName } from "../../utils/Common";
 import { Share } from "../../models/Share";
 import NumberInput from "../common/NumberInput";
 
-const UnequalShare = ({isEditMode = false, amount, members, shares, onComplete, onCancel}:ShareComponentProps) => {
+const UnequalShare = ({amount, members, shares, onComplete, onCancel}:ShareComponentProps) => {
     const [shareList, setShareList] = useState<UnequalShareView[]>([]);
     const [splittedAmount, setSplittedAmount] = useState(0);
     const [isShareInvalid, setIsShareInvalid] = useState(true);
 
     useEffect(() => {
         var shareViewList: UnequalShareView[] = [];
-        if(isEditMode && shares){
+        if(shares){
             let totalAmount = 0;
             shareViewList = members.map(mem => {
                 let share = shares.find(s => s.memberId === mem.id);

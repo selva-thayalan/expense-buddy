@@ -5,14 +5,14 @@ import { getMemberName } from "../../utils/Common";
 import { Share } from "../../models/Share";
 import NumberInput from "../common/NumberInput";
 
-const PercentageShare = ({isEditMode = false, amount, members, shares, onComplete, onCancel}:ShareComponentProps) => {
+const PercentageShare = ({amount, members, shares, onComplete, onCancel}:ShareComponentProps) => {
     const [shareList, setShareList] = useState<PercentageShareView[]>([]);
     const [splittedPercentage, setSplittedPercentage] = useState(0);
     const [isShareInvalid, setIsShareInvalid] = useState(true);
 
     useEffect(() => {
         var shareViewList: PercentageShareView[] = [];
-        if(isEditMode && shares){
+        if(shares){
             let totalPercentage = 0;
             shareViewList = members.map(mem => {
                 let share = shares.find(s => s.memberId === mem.id);
