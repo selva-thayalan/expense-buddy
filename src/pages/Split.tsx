@@ -27,6 +27,7 @@ const Split = () =>{
                     <div className="header-split-details-cont">
                         <div className="header-split-name">{split.name}</div>
                     </div>
+                    <button className="home-btn" onClick={ () => navigate("/")}>Home</button>
                 </div>
                 {outlet || <div className="split-expense-list-wrap">
                     <div className="split-expense-list-cont">
