@@ -121,10 +121,10 @@ const Home = () => {
 
     return(
         <div className="home-page main-content-area">
-            <ul className="total-split-overview no-list-style">
+            <ul className="total-split-overview no-list-style p_5">
                 {getOverAllDetails(splitList)}
             </ul>
-            <ul className="split-list no-list-style">
+            <ul className="split-list no-list-style p_5">
                 {splitList.map(split => 
                     <li className="split-cont" onClick={() => navToSplitPage(split.id)}>
                         <div className="split-pic disp_flex">

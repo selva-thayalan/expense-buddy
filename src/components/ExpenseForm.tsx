@@ -124,11 +124,13 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
     return(
         <div className="expense-form-cont">
             {split && <>
-            <input type="text" value={title} onChange={onTitleChange} placeholder="Title" className="expense-title expense-input-field-size std-style" />
-            <NumberInput value={amount} onChange={onAmountChange} placeHolder="Amount" className="expense-amount expense-input-field-size std-style" />
-            <div className="expense-split-detail-cont">
-                Paid by <Select classNamePrefix="react-select" value={paidBy} onChange={onChangePaidBy} options={getMemberOptions()}/> and split 
-                <div className="share-type-selected clickable" onClick={onClickShareType}>{getShareTypeName(shareType)}</div>
+            <div className="expense-form-wrap">
+                <input type="text" value={title} onChange={onTitleChange} placeholder="Title" className="expense-title expense-input-field-size std-style form-field-margin" />
+                <NumberInput value={amount} onChange={onAmountChange} placeHolder="Amount" className="expense-amount expense-input-field-size std-style form-field-margin" />
+                <div className="expense-split-detail-cont form-field-margin">
+                    <p className="m_2">Paid by</p><Select className="split-member-select-container m_2" classNamePrefix="react-select" value={paidBy} onChange={onChangePaidBy} options={getMemberOptions()}/>
+                    <p className="m_2">and split</p><div className="share-type-selected clickable m_2" onClick={onClickShareType}>{getShareTypeName(shareType)}</div>
+                </div>
             </div>
             {showShareEditor && <div className="share-wrap">
                 <StateSwitch style={StateStyle.tab} value={shareType} onChange={onChangeShareType} options={ShareTypeOptions}/>
@@ -137,8 +139,8 @@ const ExpenseForm = ({splitId, onCancel, onComplete, expenseModel, isEditMode = 
                         :<PercentageShare shares={shares.current} members={split?.members} amount={amount} onComplete={onShareComplete} onCancel={onCancelShareEditor}/>}
             </div>}
             <div className="expense-actions-cont t_align_c">
-                <button className="complete-action-btn" disabled={!isExpenseValid} onClick={onCompleteAction}>{isEditMode? "Save" : "Add"}</button>
-                <button className="cancel-action-btn" onClick={onCancelAction}>Cancel</button>
+                <button className="complete-action-btn p_5" disabled={!isExpenseValid} onClick={onCompleteAction}>{isEditMode? "Save" : "Add"}</button>
+                <button className="cancel-action-btn p_5" onClick={onCancelAction}>Cancel</button>
             </div>
             </>}
         </div>

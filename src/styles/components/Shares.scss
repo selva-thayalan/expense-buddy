@@ -21,14 +21,24 @@
 
 .split-item-cont{
     display: flex;
+    margin: 3px;
+    padding: 3px;
     justify-content: space-between;
     align-items: center;
+    input[type=checkbox]{
+        height: 15px;
+        width: 15px;
+    }
 }
 
 .share-footer-cont{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 15px 0px;
+    button{
+        padding: 2px;
+    }
 }
 
 .share-summary{
@@ -37,4 +47,14 @@
 
 .share-editor-input-field-size{
     width: 40px;
+}
+
+.share-action-cont{
+    display: flex;
+    height: 25px;
+    justify-content: space-evenly;
+    margin: 15px 0px;
+    button{
+        padding: 3px;
+    }
 }
