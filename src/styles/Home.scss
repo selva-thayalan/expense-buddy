@@ -1,6 +1,8 @@
 .split-list{
     padding: 5px 0px;
     color: var(--asset-color);
+    max-height: calc(100% - 90px);
+    overflow-x: auto;
 }
 
 .split-cont{

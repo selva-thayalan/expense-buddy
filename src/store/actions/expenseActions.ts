@@ -1,11 +1,11 @@
 import ActionModel from "../models/ActionModel"
 
 const addExpense = (payload: any):ActionModel => {
-    return{type: "Add", payload};
+    return{type: "AddExpense", payload};
 }
 
 const updateExpense = (payload: any):ActionModel => {
-    return{type: "Update", payload};
+    return{type: "UpdateExpense", payload};
 }
 
 export { addExpense, updateExpense};
