@@ -10,9 +10,9 @@ const expenseInitialState: Expense[] = [
 
 const expenseReducer = (state = expenseInitialState, action: ActionModel): Expense[] => {
     switch(action.type){
-        case "Add":
+        case "AddExpense":
             return [...state, action.payload];
-        case "Update":
+        case "UpdateExpense":
             return state.map(exp => exp.id === action.payload.id ? action.payload : exp);
         default:
             return state;

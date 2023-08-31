@@ -138,6 +138,9 @@ const Home = () => {
                         </div>
                     </li>)}
             </ul>
+            <div className="home-btm-actions-cont">
+                <button onClick={() => navigate('/group/new')}>Add Group</button>
+            </div>
         </div>
     )
 }

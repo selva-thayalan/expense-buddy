@@ -9,6 +9,7 @@ import AddExpense from './pages/expense/AddExpense';
 import EditExpense from './pages/expense/EditExpense';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import CreateGroup from './pages/group/CreateGroup';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,6 +22,9 @@ root.render(
         <Route path='/split/:splitId' element={<Split/>}>
           <Route path='add' element={<AddExpense/>} />
           <Route path='edit/:expenseId' element={<EditExpense/>} />
+        </Route>
+        <Route path='group'>
+          <Route path='new' element={<CreateGroup/>} />
         </Route>
       </Routes>
     </BrowserRouter>
