@@ -12,8 +12,32 @@
     margin: auto;
 }
 
+.m_2{
+    margin: 2px;
+}
+
+.p_3{
+    padding: 3px;
+}
+
+.p_5{
+    padding: 5px;
+}
+
+.py_5{
+    padding: 0px 5px;
+}
+
 .f_size_s{
     font-size: small;
+}
+
+.f_size_m{
+    font-size: medium;
+}
+
+.no_wrap{
+    white-space: nowrap;
 }
 
 .f_size_lr{
@@ -22,12 +46,24 @@
     line-height: 28px;
 }
 
+.f_w_500{
+    font-weight: 500;
+}
+
 .f_weight_b{
     font-weight: bold;
 }
 
 .t_align_c{
     text-align: center;
+}
+
+.disp_flex{
+    display: flex;
+}
+
+.disp_ib{
+    display: inline-block;
 }
 
 .v_align_flex{

@@ -29,14 +29,16 @@ const Split = () =>{
                     </div>
                     <button className="home-btn" onClick={ () => navigate("/")}>Home</button>
                 </div>
-                {outlet || <div className="split-expense-list-wrap">
-                    <div className="split-expense-list-cont">
-                        {expenses.map(expense => <ExpenseCard model={expense} members={split?.members} userAccount={useAccount}/>)}
+                {outlet || <>
+                    <div className="split-expense-list-wrap">
+                        <div className="split-expense-list-cont py_5">
+                            {expenses.map(expense => <ExpenseCard model={expense} members={split?.members} userAccount={useAccount}/>)}
+                        </div>
+                        <div className="split-foot-cont  py_5">
+                            <button className="add-new-expense-btn" onClick={() => navigate("./add")}>Add Expense<i className="fa-solid fa-receipt"></i></button>
+                        </div>
                     </div>
-                </div>}
-                <div className="split-foot-cont">
-                    <button className="add-new-expense-btn" onClick={() => navigate("./add")}>Add Expense<i className="fa-solid fa-receipt"></i></button>
-                </div>
+                </>}
             </div>}
         </>
     )
