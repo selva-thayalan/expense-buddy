@@ -111,10 +111,10 @@ const Home = () => {
             });
         });
         if(totalLend > 0){
-            elements.push(<li>You lend <b>{totalLend}</b></li>);
+            elements.push(<li className="total-split-overview-card lend-card">You lend <p className="split-amount">{totalLend}</p></li>);
         }
         if(totalBorrow > 0){
-            elements.push(<li>You owe <b>{totalBorrow}</b></li>);
+            elements.push(<li className="total-split-overview-card owe-card">You owe <p className="split-amount">{totalBorrow}</p></li>);
         }
         return elements;
     }

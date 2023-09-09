@@ -1,3 +1,24 @@
+.total-split-overview-card {
+    width: 100px;
+    display: inline-block;
+    font-size: small;
+    text-align: center;
+    color: aliceblue;
+    padding: 3px 15px;
+    margin: 0px 3px;
+    border-radius: 5px;
+    font-weight: 600;
+    &.lend-card{
+        background-color: rgb(255, 87, 87);
+    }
+    &.owe-card{
+        background-color: rgb(30, 187, 30);
+    }
+    .split-amount{
+        font-size: xx-large;
+    }
+}
+
 .split-list{
     padding: 5px 0px;
     color: var(--asset-color);
