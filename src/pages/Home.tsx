@@ -35,14 +35,14 @@ const Home = () => {
         });
         if(totalLend > 0){
             if(totalLendersCount > 1){
-                elements.push(<li className="positive-color">You lend <b>{totalLend}</b></li>);
+                elements.push(<li className="positive-color group-split-overview-cont">You lend <b className="split-overview-amount">&#8377;{totalLend}</b></li>);
                 let lendDetails = [], count = 0;
                 for(let i=0; i<overview.length; i++){
                     let item = overview[i];
                     if(item.memberId === userId){
                         count++;
                         if(count < MAX_DETAILED_LIST_COUNT || count === totalLendersCount){
-                            lendDetails.push(<p>{getMemeberNameById(members, item.owesId)} owes you {item.amount}</p>);
+                            lendDetails.push(<p>{getMemeberNameById(members, item.owesId)} owes you &#8377;{item.amount}</p>);
                         }
                         else{
                             lendDetails.push(<p>Plus <b>{totalLendersCount - lendDetails.length} Members</b> owes you</p>);
@@ -56,7 +56,7 @@ const Home = () => {
                 for(let i=0; i<overview.length; i++){
                     let item = overview[i];
                     if(item.memberId === userId){
-                        elements.push(<li className="positive-color">{getMemeberNameById(members, item.owesId)} owes you <b>{item.amount}</b></li>);
+                        elements.push(<li className="positive-color group-split-overview-cont"><span className="f_w_500">{getMemeberNameById(members, item.owesId)}</span> owes you <b className="split-overview-amount">&#8377;{item.amount}</b></li>);
                         break;
                     }
                 }
@@ -64,7 +64,7 @@ const Home = () => {
         }
         if(totalBorrow > 0){
             if(totalBorrowersCount > 1){
-                elements.push(<li className="negative-color">You owe <b>{totalBorrow}</b></li>);
+                elements.push(<li className="negative-color group-split-overview-cont">You owe <p className="split-overview-amount">&#8377;{totalBorrow}</p></li>);
                 if(totalLendersCount <= 1){
                     let borrowDetails = [], count = 0;
                     for(let i=0; i<overview.length; i++){
@@ -72,7 +72,7 @@ const Home = () => {
                         if(item.owesId === userId){
                             count++;
                             if(count < MAX_DETAILED_LIST_COUNT || count === totalBorrowersCount){
-                                borrowDetails.push(<p>You owe {getMemeberNameById(members, item.memberId)} {item.amount}</p>);
+                                borrowDetails.push(<p>You owe {getMemeberNameById(members, item.memberId)} &#8377;{item.amount}</p>);
                             }
                             else{
                                 borrowDetails.push(<p>You owe <b>{totalBorrowersCount - borrowDetails.length} Members</b> more</p>);
@@ -87,7 +87,7 @@ const Home = () => {
                 for(let i=0; i<overview.length; i++){
                     let item = overview[i];
                     if(item.owesId === userId){
-                        elements.push(<li className="negative-color">You owe {getMemeberNameById(members, item.memberId)} <b>{item.amount}</b></li>);
+                        elements.push(<li className="negative-color group-split-overview-cont">You owe <span className="f_w_500">{getMemeberNameById(members, item.memberId)}</span> <b className="split-overview-amount">&#8377;{item.amount}</b></li>);
                         break;
                     }
                 }
@@ -111,10 +111,10 @@ const Home = () => {
             });
         });
         if(totalLend > 0){
-            elements.push(<li className="total-split-overview-card lend-card">You lend <p className="split-amount">{totalLend}</p></li>);
+            elements.push(<li className="total-split-overview-card lend-card">You lend <p className="split-amount no_wrap"><span className="f_size_m">&#8377;</span>{totalLend}</p></li>);
         }
         if(totalBorrow > 0){
-            elements.push(<li className="total-split-overview-card owe-card">You owe <p className="split-amount">{totalBorrow}</p></li>);
+            elements.push(<li className="total-split-overview-card owe-card">You owe <p className="split-amount no_wrap"><span className="f_size_m">&#8377;</span>{totalBorrow}</p></li>);
         }
         return elements;
     }
