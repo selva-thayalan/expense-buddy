@@ -1,0 +1,25 @@
+button.float-action-btn{
+    height: 30px;
+    border-radius: 10px;
+    font-size: smaller;
+    font-weight: 600;
+    padding: 5px 10px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    &:active{
+        // transform: translate(1px, 1px);
+        transform: scale(.95, .95);
+    }
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+    >i{
+        margin-left: 3px;
+        font-size: medium;
+        vertical-align: middle;
+    }
+}

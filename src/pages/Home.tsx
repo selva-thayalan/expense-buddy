@@ -6,6 +6,7 @@ import { RootState } from '../store/store';
 import { SplitOverview } from '../models/SplitOverview';
 import { Member } from '../models/Member';
 import { getMemeberNameById } from '../utils/Common';
+import StyledButton, { ButtonStyle } from '../components/common/StyledButton';
 
 const MAX_DETAILED_LIST_COUNT = 3;
 
@@ -139,7 +140,11 @@ const Home = () => {
                     </li>)}
             </ul>
             <div className="home-btm-actions-cont">
-                <button onClick={() => navigate('/group/new')}>Add Group</button>
+                <StyledButton
+                    title="Add Group"
+                    buttonStyle={ButtonStyle.float}
+                    iconClass="fa-solid fa-user-group"
+                    onClick={() => navigate('/group/new')}/>
             </div>
         </div>
     )
