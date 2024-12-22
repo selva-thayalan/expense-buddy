@@ -22,7 +22,7 @@ const ButtonStyleClasses = {
 
 const StyledButton = ({title, iconClass, customClass, buttonStyle = ButtonStyle.default, onClick}: StyledButtonProps) => {
     return (
-        <button className={`${ButtonStyleClasses[buttonStyle]} ${customClass ?? ""}`} onClick={() => onClick()}>
+        <button className={`theme-transition ${ButtonStyleClasses[buttonStyle]} ${customClass ?? ""}`} onClick={() => onClick()}>
             <p>{title}</p>
             {iconClass && <i className={iconClass}></i>}
         </button>

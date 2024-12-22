@@ -1,0 +1,75 @@
+:root{
+    //medium size properties
+    --toggle-switch-medium-height: 25px;
+    --toggle-switch-medium-width: 50px;
+    --toggle-switch-medium-slider-radius: 18px;
+    --toggle-switch-medium-slider-center: 3px;
+
+    //large size properties
+    --toggle-switch-large-height: 34px;
+    --toggle-switch-large-width: 60px;
+    --toggle-switch-large-slider-radius: 26px;
+    --toggle-switch-large-slider-center: 4px;
+
+    --toggle-switch-height: var(--toggle-switch-medium-height);
+    --toggle-switch-width: var(--toggle-switch-medium-width);
+    --toggle-switch-slider-radius: var(--toggle-switch-medium-slider-radius);
+    --toggle-switch-slider-center: var(--toggle-switch-medium-slider-center);
+}
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: var(--toggle-switch-width);
+    height: var(--toggle-switch-height);
+  }
+  
+  /* Hidden radio button */
+  .toggle-switch input {
+    display: none;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: var(--toggle-switch-height);
+    transition: .3s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: var(--toggle-switch-slider-radius);
+    width: var(--toggle-switch-slider-radius);
+    left: var(--toggle-switch-slider-center);
+    bottom: var(--toggle-switch-slider-center);
+    background-color: var(--color);
+    border-radius: 50%;
+    transition: .3s;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--card-bg-color);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--card-bg-color);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: var(--toggle-switch-height);
+  }
+  
+  .main-content{
+    padding: 10px;
+    width: 100%;
+  }

@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './index.css';
 import './styles/Common.scss';
 import './styles/Responsive.scss';
+import './styles/Theme.scss';
 import Home from './pages/Home';
 import Split from './pages/Split';
 import AddExpense from './pages/expense/AddExpense';
@@ -15,6 +16,7 @@ import MainHeader from './components/MainHeader';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <Provider store={store}>
     <BrowserRouter>

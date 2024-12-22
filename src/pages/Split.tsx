@@ -22,7 +22,7 @@ const Split = () =>{
         <>
             {split && <div className="split-page main-content-area">
                 <div className="split-header">
-                    <div className="header-split-pic-cont">
+                    <div className="header-split-pic-cont theme-transition">
                         <p>{split.name.charAt(0)}</p>
                     </div>
                     <div className="header-split-details-cont">
