@@ -6,6 +6,7 @@ import { RootState } from '../store/store';
 import { Expense } from '../models/Expense';
 import ExpenseCard from '../components/ExpenseCard';
 import { Member } from '../models/Member';
+import StyledButton, { ButtonStyle } from '../components/common/StyledButton';
 
 const Split = () =>{
     const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -35,7 +36,11 @@ const Split = () =>{
                             {expenses.map(expense => <ExpenseCard model={expense} members={split?.members} userAccount={useAccount}/>)}
                         </div>
                         <div className="split-foot-cont  py_5">
-                            <button className="add-new-expense-btn" onClick={() => navigate("./add")}>Add Expense<i className="fa-solid fa-receipt"></i></button>
+                            <StyledButton
+                                title="Add Expense"
+                                buttonStyle={ButtonStyle.float}
+                                iconClass="fa-solid fa-receipt"
+                                onClick={() => navigate("./add")}/>
                         </div>
                     </div>
                 </>}
