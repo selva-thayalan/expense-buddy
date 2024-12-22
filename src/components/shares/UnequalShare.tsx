@@ -45,10 +45,10 @@ const UnequalShare = ({amount, members, shares, onComplete, onCancel}:ShareCompo
     function getBalanceStat(){
         let balance = amount - splittedAmount;
         if(balance < 0){
-            return <p className="f_size_s negative-color">&#x20B9;{Math.abs(balance)} over</p>;
+            return <p className="f_size_s theme-transition negative-color">&#x20B9;{Math.abs(balance)} over</p>;
         }
         else{
-            return <p className={"f_size_s " + (balance > 0 ? "informative-color" : "positive-color")}>&#x20B9;{balance} left</p>;
+            return <p className={"f_size_s theme-transition" + (balance > 0 ? "informative-color" : "positive-color")}>&#x20B9;{balance} left</p>;
         }
     }
 

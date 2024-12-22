@@ -3,16 +3,16 @@
     display: inline-block;
     font-size: small;
     text-align: center;
-    color: aliceblue;
+    color: var(--color);
     padding: 3px 15px;
     margin: 0px 3px;
     border-radius: 5px;
     font-weight: 600;
     &.lend-card{
-        background-color: rgb(255, 87, 87);
+        background-color: var(--negative-color);
     }
     &.owe-card{
-        background-color: rgb(30, 187, 30);
+        background-color: var(--positive-color);
     }
     .split-amount{
         font-size: xx-large;
@@ -21,7 +21,7 @@
 
 .split-list{
     padding: 5px 0px;
-    color: var(--asset-color);
+    color: var(--color);
     max-height: calc(100% - 90px);
     overflow-x: auto;
 }
@@ -32,7 +32,7 @@
     width: 100%;
     border-radius: 10px;
     border: 1px solid black;
-    // background-color: var(--seconday-color);
+    background-color: var(--card-bg-color);
     &:not(:first-child){
         margin-top: 5px;
     }
@@ -51,7 +51,7 @@
         height: 60px;
         padding: 0px;
         margin: auto;
-        color: white;
+        color: var(--color);
     }
 }
 
@@ -60,7 +60,7 @@
     padding: 5px;
     font-size: 18px;
     .split-name{
-        color: black;
+        color: var(--color);
     }
 }
 
@@ -72,7 +72,7 @@
 .split-overview-details{
     padding-left: 20px;
     font-size: x-small;
-    color: black;
+    color: var(--color);
 }
 
 .group-split-overview-cont{
@@ -81,4 +81,11 @@
         font-size: 14px;
         font-weight: 500;
     }
+}
+
+.home-btm-actions-cont{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }

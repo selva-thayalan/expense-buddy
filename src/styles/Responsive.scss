@@ -1,0 +1,20 @@
+/* Media Query for tablets and below */
+@media (max-width: 768px) {
+  :root{
+    --brand-font: 20px;
+  }
+  .main-content {
+    padding: 15px;
+  }
+}
+
+/* Media Query for mobile devices */  
+@media (max-width: 480px) {
+  :root{
+    --brand-font: 18px;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+}

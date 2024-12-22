@@ -1,0 +1,16 @@
+.brand-name {
+    font-weight: 600;
+    padding: 5px;
+    font-size: var(--brand-font);
+}
+
+.main-header {
+    background-color:var(--primary-blue);
+    color: var(--color);
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+}
