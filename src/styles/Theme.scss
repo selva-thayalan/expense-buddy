@@ -1,0 +1,50 @@
+:root{
+    --seconday-color: #7a9e9f;
+    --primary-color: #B8D8D8;
+    --asset-color: #eef5db;
+
+    //Color theme properties
+    --light-mode-green: #00d200;
+    --light-mode-red: #f73535;
+    --primary-blue: #165ba5;
+    --primary-green: #28A745;
+    
+    --secondary-light-gray: #F5F5F5;
+    --secondary-dark-gray: #343A40;
+    
+    --accent-orange: #FF5722;
+    --accent-yellow: #FFEB3B;
+    
+    --supportive-purple: #9C27B0;
+    --supportive-light-blue: #03A9F4;
+    
+    --neutral-white: #FFFFFF;
+    --neutral-charcoal: #333333;
+    
+    --dark-mode-background: #1C1C1C;
+    --dark-mode-medium-gray: #444444; 
+    --dark-mode-light-gray: #D1D1D1; 
+    --dark-mode-green: #00ff00;
+    --dark-mode-red: #ff0000;
+
+    //light theme
+    --background-color: var(--secondary-light-gray);
+    --color: var(--secondary-dark-gray);
+    --card-bg-color: var(--neutral-white);
+    --positive-color: var(--light-mode-green);
+    --negative-color: var(--light-mode-red);
+}
+
+[data-theme=dark]{
+    --background-color: var(--dark-mode-background);
+    --color: var(--neutral-white);
+    --card-bg-color: var(--dark-mode-medium-gray);
+    --positive-color: var(--dark-mode-green);
+    --negative-color: var(--dark-mode-red);
+}
+
+.theme-transition{
+    transition-property: color, background-color;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out;
+}

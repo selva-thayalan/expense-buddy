@@ -45,10 +45,10 @@ const PercentageShare = ({amount, members, shares, onComplete, onCancel}:ShareCo
     function getPercentageStat(){
         let balance = 100 - splittedPercentage;
         if(balance < 0){
-            return <p className="f_size_s negative-color">{Math.abs(balance)}% over</p>;
+            return <p className="f_size_s theme-transition negative-color">{Math.abs(balance)}% over</p>;
         }
         else{
-            return <p className={"f_size_s " + (balance > 0 ? "informative-color" : "positive-color")}>{balance}% left</p>;
+            return <p className={"f_size_s theme-transition" + (balance > 0 ? "informative-color" : "positive-color")}>{balance}% left</p>;
         }
     }
 
