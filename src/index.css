@@ -30,3 +30,8 @@ code {
 button, input[type="checkbox"]{
   cursor: pointer;
 }
+
+.main-content{
+  padding: 10px;
+  width: 100%;
+}
